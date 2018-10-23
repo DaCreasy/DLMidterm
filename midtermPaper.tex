@@ -6,6 +6,7 @@
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}        % for piecewise function
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 
@@ -16,11 +17,26 @@
 \maketitle
 
 \section{Introduction}
-In this paper we set out to improve on the convolutional CIFAR-10 model provided by Keras\footnote{\url{https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py}}. The CIFAR-10 dataset contains 60000 color images that are 32 pixels wide by 32 pixels high. The CIFAR-10 set has 6000 examples for each of 10 classes. The CNN (convolutional neural network) provided by Keras initially obtains an accuracy 75\% over 25 epochs. We set out to experiment with various adjustments in order to examine their affects on the accuracy of the CNN on the CIFAR-10 dataset. We find that with a few minor adjustments, we can easily achieve an accuracy off 81\%.
+In this paper we set out to improve on the convolutional CIFAR-10 model provided by Keras.\footnote{\url{https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py}} The CIFAR-10 dataset contains 60000 32 by 32 color images for training data and 6000 32 by 32 color images for testing data. The neural network provided by Keras, of which the CNN (convolutional neural network) is the backbone, obtains an accuracy 75\% over 25 epochs and 79\% over 50 epochs. We set out to experiment with various adjustments in order to examine their effects on the accuracy of the CNN on the CIFAR-10 dataset. We find that with a few minor adjustments to the network, we can typically improve accuracy. Our experiments include adding an upsampling layer, changing the activations to exponential linear units (ELU), and combining those two with a convolutional 2D transpose. Most of these minor changes do not increase the computational complexity by a significant amount, with upsampling being the exception.
 
+\section{Related Work}
+There have been many breakthroughs in state-of-the-art performance for the CIFAR-10 classification problem, however, one sticks out as particularly beneficial. Clevert et. al. introduced a novel activation function, the ELU, in order to improve upon the largely popular ReLU activation. The ELU uses the following piecewise function:
+\[   f(x)=\left\{
+\begin{array}{ll}
+      x & x > 0 \\
+      \alpha (exp(x)-1) & x \leq 0 \\
+\end{array} 
+\right. \]
+where $\alpha$ is a hyperparamter which the ELU will push to for negative values. As they show, this simple change to the piecewise function greatly improves generalizability and speed without sacrificing computational simplicity. This is due to the functions ability to push the mean closer to zero through the inclusion of negative values, which in turn allows the gradient to take on values which decrease the time to learn.
 \section{Approach}
+Our first improvement to the Keras example code comes from finding the best optimizer for the neural network. We considered testing the rms, sgd, adagrad, adadelta, and adam optimizers for optimization. Several trials of the Keras example code using different optimizers lead us to use the adam optimizer for best accuracy, although it should be noted that the rms optimizer produced the quickest results. After finding the optimal optimizer, we set out to determine the best activation function to use for each layer of the network. Starting with the rectified linear units that Keras uses for each layer, we optimized for the best activation function. Optimizing for the activation function, again on the vanilla Keras example code, lead us to use the adam activation function for each layer. After finding the best activation function, we added in new layers and changed the ordering of some of the layers in an effort to improve performance. The greatest increase in accuracy came from inserting a 2D up-sampling layer in the middle of the network. 
+The final network architecture was two 2D CNN’s followed by a pooling layer; the up-sampling layer; two more 2D CNN’s followed by a pooling layer; a flattening layer followed by two dense layers. All other layers besides the final dense layer used an exponential linear unit for the activation function. Other types of layers supported by Keras were tested, but produced sub-optimal results. Rearranging the layers did not seem to have much effect on improving the accuracy of the network either, so the final network keeps the same ordering as the Keras example code, aside from the addition of the up-sampling layer
+
 
 \section{Results}
+All experiments we run are compared to our baseline, represented by the CNN architecture provided by Keras. This CNN achieves an accuracy of 75\% in 25 epochs. The average time per epoch is 10 seconds, establishing our baseline. The first experiment we run is the upsampling network. This network achieves an accuracy of 77\% in 25 epochs, with an average time of 40 seconds. The next experiment is the ELU activation network, which achieves an accuracy of 76\% with an average time of 10 seconds. It is worth noting that at 25 epochs, this network still improves validation accuracy. As such, we continue to run the network for a total of 100 epochs, at which point it achieves an accuracy of 81\%. Despite this, we wish to control for number of epochs, so we only consider the accuracy of the network after 25 epochs. Finally, we run the network that includes upsampling, ELU activations, and convolutional 2D-transpositions. This networks achieves an accuracy of 74\% with an average time of 50 seconds per epoch.
+
+\section{Analysis}
 
 \section{Conclusion}
 
