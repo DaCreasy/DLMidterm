@@ -10,13 +10,13 @@
 \usepackage{microtype}      % microtypography
 
 \title{Neural Networks Midterm Project}
-\author{Benjamin Klybor, Damian Creasey}
+\author{Benjamin Klybor, Damian Creasy}
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
-In this paper we set out to improve on the generic CIFAR-10 code available at \url{https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py}. However, instead of testing an improved model on the CIFAR-10 dataset, we set out to test the data on the CIFAR-100 dataset. Currently, the best model for analyzing the CIFAR-100 dataset achieves an accuracy of about 84\%. While in setting out on this project we didn't expect to even approach this accuracy, we were surprised to find just how well the CIFAR-10 model worked for analyzing the CIFAR-100 data. Starting from a baseline accuracy of about 38\%, we have made several improvements to the model including \{insert blurb here\}, that have drastically improved accuracy.
+In this paper we set out to improve on the convolutional CIFAR-10 model provided by Keras\footnote{\url{https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py}}. However, instead of testing an improved model on the CIFAR-10 dataset, we set out to test the network on the CIFAR-100 dataset. The CIFAR datasets each contain 60000 color images that are 32 wide by 32 pixels high. The CIFAR-10 set has 6000 examples for each of 10 classes, whereas the CIFAR-100 set has 600 examples for each of 100 classes. Currently, the best model for analyzing the CIFAR-100 dataset achieves an accuracy of about 84\%. While in setting out on this project we do not expect to even approach this accuracy, are surprised to find just how well the basic CIFAR-10 network from Keras works for analyzing the CIFAR-100 data. Starting from a baseline accuracy of about 38\%, we make some adjustments to the model to see how they affect the accuracy.
 
 \section{Related Work}
 
