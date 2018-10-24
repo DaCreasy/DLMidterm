@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1540350634 "/home/ben/Documents/NeuralNetworks/midterm/DLMidterm/midtermPaper.tex" "midtermPaper.pdf" "midtermPaper" 1540350635
+["pdflatex"] 1540351369 "/home/ben/Documents/NeuralNetworks/midterm/DLMidterm/midtermPaper.tex" "midtermPaper.pdf" "midtermPaper" 1540351369
   "/etc/texmf/web2c/texmf.cnf" 1537390238 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/ben/Documents/NeuralNetworks/midterm/DLMidterm/midtermPaper.tex" 1540350634 7720 d73adbbaf3707de86c3dcc5271f7e271 ""
+  "/home/ben/Documents/NeuralNetworks/midterm/DLMidterm/midtermPaper.tex" 1540351368 7732 dc197f71ad06f0bc6ea8c4df983ec3b4 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1480098696 3584 13049b61b922a28b158a38aeff75ee9b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0600.tfm" 1480098696 3584 291a5713401683441e0a8c8f4417b17b ""
@@ -101,9 +101,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1537390366 2700761 ac0584cc9514ab21918550a6948c4ee2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1537390382 4130326 70c584e255daac37127a810cc45439cf ""
   "Figure_1.eps" 1540347828 24444 7f83f4d28f582069f9079574498a4c1c ""
-  "midtermPaper.aux" 1540350635 1955 9edbdaa29edcc32e70696ca060aa5dd8 ""
-  "midtermPaper.out" 1540350635 312 1e31cddd14df379a6e105b55914e16f3 ""
-  "midtermPaper.tex" 1540350634 7720 d73adbbaf3707de86c3dcc5271f7e271 ""
+  "midtermPaper.aux" 1540351369 1955 9edbdaa29edcc32e70696ca060aa5dd8 ""
+  "midtermPaper.out" 1540351369 312 1e31cddd14df379a6e105b55914e16f3 ""
+  "midtermPaper.tex" 1540351368 7732 dc197f71ad06f0bc6ea8c4df983ec3b4 ""
   (generated)
   "midtermPaper.log"
   "midtermPaper.pdf"
