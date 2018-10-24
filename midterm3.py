@@ -2,11 +2,11 @@ import keras
 from keras.datasets import cifar100, cifar10
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Activation, Conv2DTranspose, SeparableConv2D
-from keras.layers import UpSampling2D, Cropping2D, AveragePooling2D
+from keras.layers import UpSampling2D, Cropping2D
 import sys
 
 # Hyperparameters for training
-batch_size = 16
+batch_size = 32
 num_classes = 10
 epochs = 25
 print("Chosen batch size: %s" % batch_size)
@@ -49,34 +49,58 @@ model = Sequential()
 
 # model.add(Cropping2D(cropping=((2,2),(4,4)), input_shape=x_train.shape[1:]))
 # model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3), padding='same', input_shape=x_train.shape[1:]))
-model.add(Activation('elu'))
+model.add(Conv2D(128, (3, 3), padding='same', input_shape=x_train.shape[1:]))
+model.add(Activation('selu'))
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 # model.add(Conv2DTranspose(32, (3,3), padding='same'))
-# model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3),padding='same'))
+# model.add(Activation('selu'))
+model.add(Conv2D(128, (3, 3),padding='same'))
 model.add(Activation('elu'))
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
 model.add(UpSampling2D(size=(2,2)))
-model.add(Activation('elu'))
+model.add(Activation('selu'))
 
 model.add(Conv2D(64, (3, 3)))
-model.add(Activation('elu'))
+model.add(Activation('selu'))
 # model.add(MaxPooling2D(pool_size=(2, 2)))
 # model.add(Conv2DTranspose(64, (3,3), padding='same'))
-# model.add(Activation('relu'))
+# model.add(Activation('selu'))
 model.add(Conv2D(64, (3, 3),padding='same'))
-model.add(Activation('elu'))
-model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Activation('selu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+# model.add(Cropping2D(cropping=((2,2),(2,2))))
+# model.add(SeparableConv2D(64, (3,3), strides=(1,1), padding='valid'))
+
+model.add(Conv2D(32, (3, 3)))
+model.add(Activation('selu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Conv2DTranspose(64, (3,3), padding='same'))
+# model.add(Activation('selu'))
+model.add(Conv2D(32, (3, 3),padding='same'))
+model.add(Activation('selu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+# model.add(Cropping2D(cropping=((2,2),(2,2))))
+# model.add(SeparableConv2D(64, (3,3), strides=(1,1), padding='valid'))
+
+model.add(Conv2D(16, (3, 3)))
+model.add(Activation('selu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Conv2DTranspose(64, (3,3), padding='same'))
+# model.add(Activation('selu'))
+model.add(Conv2D(16, (3, 3),padding='same'))
+model.add(Activation('selu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 # model.add(Cropping2D(cropping=((2,2),(2,2))))
 # model.add(SeparableConv2D(64, (3,3), strides=(1,1), padding='valid'))
 
 model.add(Flatten())
 model.add(Dense(512))
-model.add(Activation('elu'))
+model.add(Activation('selu'))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes))
 model.add(Activation('softmax'))
@@ -90,6 +114,6 @@ model.fit(x_train, y_train,
           shuffle=True)
 
 scores = model.evaluate(x_test, y_test, verbose=1)
-sys.stdout = open('output2.txt', 'w')
+sys.stdout = open('output3.txt', 'w')
 print('Test loss:', scores[0])
 print('Test accuracy:', scores[1])
